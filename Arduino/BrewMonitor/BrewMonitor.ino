@@ -1,16 +1,14 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include <SoftwareSerial.h>
  
-// Data wire is plugged into pin 2 on the Arduino
+// Data wire is plugged into pin A4 on the Arduino
 #define ONE_WIRE_BUS A4
 #define SSID "SSID"
 #define PASS "PASSWORD"
-#define DST_IP "54.76.114.101" //baidu.com
+#define DST_IP "54.76.114.101" // dev.thebedroomlaboratory.com
 #define PATH "/~martin/brewmonitor/api/readings"
 #define HOST "dev.thebedroomlaboratory.com"
-#define DEV_ID "1"
-SoftwareSerial dbgSerial(10, 11); // RX, TX
+#define DEV_ID "1" //can be used in future developments for multiple installations
  
 // Setup a oneWire instance to communicate with any OneWire devices 
 // (not just Maxim/Dallas temperature ICs)
@@ -21,11 +19,11 @@ DallasTemperature sensors(&oneWire);
 
 void setup()
 {
+  pinMode(13, OUTPUT);
+  digitalWrite(13,LOW);
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
-//  Serial.setTimeout(5000);
-  dbgSerial.begin(9600); //can't be faster than 19200 for softserial
-  dbgSerial.println("ESP8266 Demo");
+  Serial.setTimeout(5000);
   //test if the module is ready
   delay(5000);
   Serial.println("AT+RST");
@@ -33,14 +31,13 @@ void setup()
   
   if(Serial.find("ready"))
   {
-    digitalWrite(13,HIGH);
-    delay(500);
-    digitalWrite(13,LOW);
-    dbgSerial.println("Module is ready");
+    // flash LED to let us know that device ready
+    flash();
   }
   else
   {
-    dbgSerial.println("Module have no response.");
+    // Turn LED on continuously to signify stall
+    ledOn();
     while(1);
   }
   delay(1000);
@@ -50,25 +47,19 @@ void setup()
   {
     if(connectWiFi())
     {
-      digitalWrite(13,HIGH);
-      delay(500);
-      digitalWrite(13,LOW);
+      // flash LED to let us know that device connected
+      flash();
       connected = true;
       break;
     }
   }
   if (!connected)
   {
-    dbgSerial.println("Uh oh");
+    // Turn LED on continuously to signify stall
+    ledOn();
     while(1);
   }
   delay(5000);
-  //print the ip addr
-  /*Serial.println("AT+CIFSR");
-  dbgSerial.println("ip address:");
-  while (Serial.available())
-  dbgSerial.write(Serial.read());*/
-  //set the single connection mode
   Serial.println("AT+CIPMUX=0");
   sensors.begin();
 }
@@ -79,7 +70,6 @@ void loop()
   cmd += DST_IP;
   cmd += "\",80";
   Serial.println(cmd);
-  dbgSerial.println(cmd);
   if(Serial.find("Error")) return;
   sensors.requestTemperatures();
   float tempf = sensors.getTempCByIndex(0);
@@ -107,26 +97,23 @@ void loop()
   Serial.println(cmd.length());
   if(Serial.find(">"))
   {
-    dbgSerial.print(">");
   }else
   {
     Serial.println("AT+CIPCLOSE");
-    dbgSerial.println("connect timeout");
     delay(1000);
     return;
   }
   Serial.print(cmd);
-  delay(2000);
-  //Serial.find("+IPD");
+  // flash LED to let us know that msg sent
+  flash();
+  delay(1000);
   while (Serial.available())
   {
     char c = Serial.read();
-    dbgSerial.write(c);
-    if(c=='\r')
-      dbgSerial.print('\n');
   }
-  dbgSerial.println("====");
-  delay(56000);
+  delay(600000);
+  delay(600000);
+  delay(591000);  
 }
 
 boolean connectWiFi()
@@ -137,16 +124,24 @@ boolean connectWiFi()
   cmd+="\",\"";
   cmd+=PASS;
   cmd+="\"";
-  dbgSerial.println(cmd);
   Serial.println(cmd);
   delay(2000);
   if(Serial.find("OK"))
   {
-    dbgSerial.println("OK, Connected to WiFi.");
     return true;
   }else
   {
-    dbgSerial.println("Can not connect to the WiFi.");
     return false;
   }
+}
+
+void ledOn(){
+  digitalWrite(13,HIGH);
+}
+
+void flash()
+{
+  digitalWrite(13,HIGH);
+  delay(1000);
+  digitalWrite(13,LOW);
 }
