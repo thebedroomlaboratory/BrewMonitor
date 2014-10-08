@@ -9,7 +9,7 @@ class ReadingController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Reading::get();
+		$records = Reading::where('created_at', '>', Carbon\Carbon::now()->subDays(30))->orderBy('created_at', 'desc')->get();
 		return Response::json($records->reverse());
 	}
 
