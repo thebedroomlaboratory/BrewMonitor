@@ -1584,7 +1584,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="ESP8266" library="SparkFun-Connectors" deviceset="M04X2" device=""/>
 <part name="C1" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="1uF"/>
 <part name="U$5" library="SparkFun-Boards" deviceset="ARDUINO_R3_SHIELD" device=""/>
-<part name="DS18B20" library="SparkFun-Connectors" deviceset="M03" device="SCREW"/>
+<part name="DS18B20" library="SparkFun-Connectors" deviceset="M03" device="SCREW" value="M03X1"/>
 </parts>
 <sheets>
 <sheet>
@@ -1601,9 +1601,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="C1" gate="G$1" pin="1"/>
-<label x="48.26" y="106.68" size="1.778" layer="95" rot="R180"/>
-<wire x1="45.72" y1="109.22" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="DS18B20" gate="G$1" pin="2"/>
+<wire x1="53.34" y1="83.82" x2="55.88" y2="83.82" width="0.1524" layer="91"/>
+<label x="55.88" y="83.82" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$5" gate="G$1" pin="GND@0"/>
+<wire x1="0" y1="45.72" x2="-2.54" y2="45.72" width="0.1524" layer="91"/>
+<label x="-5.08" y="45.72" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="ESP8266" gate="G$1" pin="2"/>
@@ -1611,9 +1616,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="25.4" y="116.84" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$5" gate="G$1" pin="GND@1"/>
-<wire x1="0" y1="48.26" x2="-2.54" y2="48.26" width="0.1524" layer="91"/>
-<label x="-5.08" y="48.26" size="1.778" layer="95"/>
+<pinref part="C1" gate="G$1" pin="1"/>
+<label x="48.26" y="106.68" size="1.778" layer="95" rot="R180"/>
+<wire x1="45.72" y1="109.22" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$5" gate="G$1" pin="GND@2"/>
@@ -1621,9 +1626,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="-5.08" y="50.8" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="DS18B20" gate="G$1" pin="2"/>
-<wire x1="53.34" y1="83.82" x2="55.88" y2="83.82" width="0.1524" layer="91"/>
-<label x="55.88" y="83.82" size="1.778" layer="95"/>
+<pinref part="U$5" gate="G$1" pin="GND@1"/>
+<wire x1="0" y1="48.26" x2="-2.54" y2="48.26" width="0.1524" layer="91"/>
+<label x="-5.08" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RX" class="0">
@@ -1635,6 +1640,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="U$5" gate="G$1" pin="RX"/>
 <wire x1="25.4" y1="86.36" x2="27.94" y2="86.36" width="0.1524" layer="91"/>
+<label x="27.94" y="86.36" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TX" class="0">
@@ -1646,18 +1652,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="U$5" gate="G$1" pin="TX"/>
 <wire x1="25.4" y1="83.82" x2="27.94" y2="83.82" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$11" class="0">
-<segment>
-<pinref part="ESP8266" gate="G$1" pin="3"/>
-<wire x1="5.08" y1="114.3" x2="7.62" y2="114.3" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$12" class="0">
-<segment>
-<pinref part="ESP8266" gate="G$1" pin="5"/>
-<wire x1="5.08" y1="111.76" x2="7.62" y2="111.76" width="0.1524" layer="91"/>
+<label x="27.94" y="83.82" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -1675,18 +1670,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U$5" gate="G$1" pin="3.3V"/>
 <wire x1="0" y1="55.88" x2="-2.54" y2="55.88" width="0.1524" layer="91"/>
 <label x="-5.08" y="55.88" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$15" class="0">
-<segment>
-<pinref part="ESP8266" gate="G$1" pin="4"/>
-<wire x1="22.86" y1="114.3" x2="25.4" y2="114.3" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$16" class="0">
-<segment>
-<pinref part="ESP8266" gate="G$1" pin="6"/>
-<wire x1="22.86" y1="111.76" x2="25.4" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="A4" class="0">
