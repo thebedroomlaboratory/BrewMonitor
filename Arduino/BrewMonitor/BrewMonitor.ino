@@ -113,7 +113,7 @@ void loop()
   }
   delay(600000);
   delay(600000);
-  delay(591000);  
+  delay(591530);  
 }
 
 boolean connectWiFi()
