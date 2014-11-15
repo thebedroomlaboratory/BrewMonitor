@@ -17,4 +17,4 @@ Demo site: http://dev.thebedroomlaboratory.com/~martin/brewmonitor/
   * http://opus-sahara.codio.io:1880/api/brew/v1.0
 * POST
   * http://opus-sahara.codio.io:1880/api/brew/v1.0
-  * `{ "devid": 0, "temps": [{"sensid": 0, "temp": 22.2}, {"sensid": 1, "temp": 21.8}], "timestamp": "2014-11-13T03:02:08.506Z" }`
+  * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
