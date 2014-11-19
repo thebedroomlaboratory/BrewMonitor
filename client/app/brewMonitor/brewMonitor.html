@@ -1,0 +1,40 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+		<!-- PAGE TITLE =============================================== -->
+	<div class="page-header">
+		<h2>BrewMonitor Application</h2>
+		<h4>Temperature Reading System</h4>
+	</div>
+
+	<!-- NEW READING FORM =============================================== -->
+	<!-- <form ng-submit="submitReading()">
+		<div class="form-group">
+			<input type="number" step="any" class="form-control input-sm" name="device" ng-model="readingData.device">
+		</div>
+
+		<div class="form-group">
+			<input type="number" step="any" class="form-control input-sm" name="reading" ng-model="readingData.temp">
+		</div>
+
+		<div class="form-group text-right">
+			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+		</div>
+	</form> -->
+
+	<!-- LOADING ICON =============================================== -->
+	<!-- show loading icon if the loading variable is set to true -->
+	<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+
+	<!-- THE READINGS =============================================== -->
+	<!-- hide these readings if the loading variable is true -->
+	<!-- <div class="reading" ng-hide="loading" ng-repeat="reading in readings">
+		<h3>Reading #{{ reading.id }} <small>by device {{ reading.device }}</h3>
+		<p>{{ reading.temp }}</p>
+
+		<p><a href="#" ng-click="deleteReading(reading.id)" class="text-muted">Delete</a></p>
+	</div> -->
+	<div class="reading" ng-hide="loading">
+		<linechart data="mygdata" options="mygoptions"></linechart>
+	</div>
+
+</div>

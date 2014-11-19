@@ -2,8 +2,9 @@ Copyright (c) 2014, thebedroomlaboratory
 All rights reserved.
 
 BEER-WARE
-<martin@thebedroomlaboratory.com> wrote these files. As long as you retain this
-notice you can do whatever you want with this stuff. If we meet some day, and
+<martin@thebedroomlaboratory.com> wrote the original files, 
+<jonnie@thebedroomlaboratory.com> ported to the Node-FullstackAs long as you retain 
+thisnotice you can do whatever you want with this stuff. If we meet some day, and
 you think this stuff is worth it, you can buy me a beer in return. Martin Kennedy
 
 THIS SOFTWARE AND THESE HARDWARE DESIGNS ARE PROVIDED BY THE COPYRIGHT HOLDERS
@@ -18,5 +19,3 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 THE USE OF THIS SOFTWARE OR THESE HARDWARE DESIGNS, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-The Laravel framework is open-sourced software licensed under the MIT license
-http://opensource.org/licenses/MIT

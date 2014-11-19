@@ -1,0 +1,31 @@
+{
+  "name": "brewMonitor",
+  "version": "0.0.1",
+  "description": "Basic Brew monitor web app and Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "Beer",
+    "Brewing",
+    "Monitor",
+    "Bedlab"
+  ],
+  "author": "jonnie@bedlab.com",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "gulp": "^3.8.10",
+    "gulp-load-plugins": "^0.7.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "errorhandler": "^1.2.2",
+    "express": "^4.10.2",
+    "method-override": "^2.3.0",
+    "mongodb": "^1.4.20",
+    "mongoose": "^3.8.19",
+    "node-red": "^0.9.1-nocolors"
+  }
+}

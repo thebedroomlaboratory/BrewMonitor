@@ -1,0 +1,88 @@
+/*!
+ * Start Bootstrap - Business Frontpage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+.landing-page-header {
+    height: 400px;
+    background: url('http://placehold.it/1920x400') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+/* Customize the text color and shadow color and to optimize text legibility. */
+
+.tagline {
+    text-shadow: 0 0 10px #000;
+    color: #fff;
+}
+
+.img-center {
+    margin: 0 auto;
+}
+
+/*=========================
+  Footer
+ ================= */
+
+section#footer {
+    /*background: #242424;*/
+    margin-bottom:-50px;
+    padding:20px;
+}
+
+section#footer .copyright {
+    text-align: center;
+}
+
+/* footer social icons */
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left:0 !important;
+    padding: 0;
+}
+ul.social-network li {
+    display: inline;
+    margin: 0 5px;
+}
+
+/* footer menu */
+ul.footer-menu {
+    list-style: none;
+    display: inline;
+    margin-left:0 !important;
+    padding: 0;
+}
+ul.footer-menu li {
+    display: inline;
+    margin: 0 5px;
+}
+
+a.scrollup{
+    height:30px;
+    width:32px;
+    /*color:#fff;*/
+    font-size:18px;
+    line-height:32px;
+    text-align:center;
+    text-decoration:none;
+    position:fixed;
+    bottom:40px;
+    right:20px;
+    z-index:9999;
+    opacity:0.5;
+}
+a.scrollup:hover{
+    opacity:1;
+    /*color:#fff;*/
+}

@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index.php|img|stylesheets|js|icons|robots\.txt|user_guide)
-RewriteRule ^(.*)$ /~martin/brewmonitor/index.php/$1 [L]

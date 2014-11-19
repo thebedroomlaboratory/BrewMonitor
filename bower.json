@@ -1,0 +1,36 @@
+{
+  "name": "brewMonitor",
+  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Basic Brew monitor web app and Server",
+  "keywords": [
+    "Beer",
+    "Brewing",
+    "Monitor",
+    "Bedlab"
+  ],
+  "authors": [
+    "The BedLab Team"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/app/components/",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "angular": "~1.3.3"
+  },
+  "dependencies": {
+    "angular": "~1.3.3",
+    "angular-ui-router": "~0.2.12",
+    "font-awesome": "~4.2.0",
+    "angular-bootstrap": "~0.12.0",
+    "bootstrap": "~3.3.1",
+    "d3": "~3.4.13"
+  }
+}
