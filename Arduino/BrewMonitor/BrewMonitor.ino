@@ -1,136 +1,192 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
- 
+#include <SoftwareSerial.h>
+
 // Data wire is plugged into pin A4 on the Arduino
-#define ONE_WIRE_BUS A4
+#define ONE_WIRE_BUS A0
+SoftwareSerial mySerial(4, 5); // RX, TX
 #define SSID "SSID"
 #define PASS "PASSWORD"
 #define DST_IP "54.76.114.101" // dev.thebedroomlaboratory.com
 #define PATH "/~martin/brewmonitor/api/readings"
-#define HOST "dev.thebedroomlaboratory.com"
-#define DEV_ID "1" //can be used in future developments for multiple installations
+#define HOST "dev.thebedlab.com"
+#define DEV_ID "2" //can be used in future developments for multiple installations
+unsigned long transmissionFrequency=30000;
+unsigned long checkFrequency=5000;
+double Setpoint = 20.0;
  
 // Setup a oneWire instance to communicate with any OneWire devices 
 // (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
- 
 // Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensors(&oneWire);
+unsigned long lastTransmission, lastCheck;
+boolean webConnected;
+int RelayPin = 12;
+int RelayPower = 2;
+boolean heatingOn = false;
 
 void setup()
 {
+  pinMode(RelayPin, OUTPUT);
+  pinMode(RelayPower, OUTPUT);
+  digitalWrite(RelayPin,HIGH);
+  digitalWrite(RelayPower,HIGH);
+  webConnected=false;
+  mySerial.begin(9600);
   pinMode(13, OUTPUT);
   digitalWrite(13,LOW);
-  // Open serial communications and wait for port to open:
-  Serial.begin(115200);
-  Serial.setTimeout(5000);
-  //test if the module is ready
-  delay(5000);
-  Serial.println("AT+RST");
-  delay(1000);
-  
-  if(Serial.find("ready"))
-  {
-    // flash LED to let us know that device ready
-    flash();
+  lastTransmission = millis();
+  lastCheck = millis();
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
   }
-  else
+  for(int i=0;i<10;i++)
   {
-    // Turn LED on continuously to signify stall
-    ledOn();
-    while(1);
-  }
-  delay(1000);
-  //connect to the wifi
-  boolean connected=false;
-  for(int i=0;i<5;i++)
-  {
-    if(connectWiFi())
-    {
-      // flash LED to let us know that device connected
-      flash();
-      connected = true;
-      break;
+    if(!webConnected){
+      mySerial.println("AT");
+      //delay(1000);  
+      if(mySerial.find("OK"))
+      {
+        webConnected=true;
+        Serial.println("Module is addressable");
+        break;
+      }
     }
   }
-  if (!connected)
+  if(!webConnected)
   {
     // Turn LED on continuously to signify stall
     ledOn();
-    while(1);
+    Serial.println("Module not addressable. Try resetting or continue without Internet.");
   }
-  delay(5000);
-  Serial.println("AT+CIPMUX=0");
+  else{
+    delay(1000);
+    //connect to the wifi
+    webConnected=false;
+    for(int i=0;i<10;i++)
+    {
+      if(connectWiFi())
+      {
+        // flash LED to let us know that device connected
+        flash();
+        Serial.println("Module is connected to WLAN");
+        webConnected = true;
+        break;
+      }
+    }
+    if (!webConnected)
+    {
+      // Turn LED on continuously to signify stall
+      ledOn();
+      Serial.println("Could not connect to WLAN. Try resetting or continue without Internet.");
+    }
+    delay(5000);
+    Serial.println("AT+CIPMUX=0");
+  }
   sensors.begin();
 }
 
 void loop()
 {
-  String cmd = "AT+CIPSTART=\"TCP\",\"";
-  cmd += DST_IP;
-  cmd += "\",80";
-  Serial.println(cmd);
-  if(Serial.find("Error")) return;
-  sensors.requestTemperatures();
-  float tempf = sensors.getTempCByIndex(0);
-  int temp1 = (int)tempf;
-  int temp2 = (tempf - temp1) * 100;
-  String temp="";
-  temp += temp1;
-  temp += ".";
-  if (temp2<10)
-    temp += "0";
-  temp += temp2;
-  String payload = "device=";
-  payload += DEV_ID;
-  payload += "&temp="+temp;
-  cmd = "POST ";
-  cmd += PATH;
-  cmd += " HTTP/1.0\r\nHost: ";
-  cmd += HOST;
-  cmd += "\r\nCache-Control: no-cache\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: ";
-  cmd += payload.length();
-  cmd += "\r\n\r\n";
-  cmd += payload;
-  cmd += "\r\n";
-  Serial.print("AT+CIPSEND=");
-  Serial.println(cmd.length());
-  if(Serial.find(">"))
+  if(millis()-lastCheck>checkFrequency){
+    lastCheck=lastCheck+checkFrequency;
+    sensors.requestTemperatures();
+    float temperature = sensors.getTempCByIndex(0);
+    if (!heatingOn && temperature<(Setpoint-0.2))
+    {
+      heatingOn=true;
+      Serial.println("Turning Heating On.");
+      digitalWrite(RelayPin, LOW);
+    }
+    else if(heatingOn && temperature>Setpoint)
+    {
+      heatingOn=false;
+      Serial.println("Turning Heating Off.");
+      digitalWrite(RelayPin, HIGH);
+    }
+    
+    Serial.print("HeatingOn=");
+    Serial.print(heatingOn);
+    Serial.print("Temp=");
+    Serial.println(temperature);
+  }    
+    
+    
+  if(webConnected && (millis()-lastTransmission>transmissionFrequency))
   {
-  }else
-  {
-    Serial.println("AT+CIPCLOSE");
+    lastTransmission+=transmissionFrequency;
+    String cmd = "AT+CIPSTART=\"TCP\",\"";
+    cmd += DST_IP;
+    cmd += "\",80";
+    mySerial.println(cmd);
+    if(mySerial.find("Error")) return;
+    sensors.requestTemperatures();
+    float tempf = sensors.getTempCByIndex(0);
+    int temp1 = (int)tempf;
+    int temp2 = (tempf - temp1) * 100;
+    String temp="";
+    temp += temp1;
+    temp += ".";
+    if (temp2<10)
+      temp += "0";
+    temp += temp2;
+    String payload = "device=";
+    payload += DEV_ID;
+    payload += "&temp="+temp;
+    payload += "&heaton=";
+    payload += heatingOn;
+    Serial.println(payload);
+    cmd = "POST ";
+    cmd += PATH;
+    cmd += " HTTP/1.0\r\nHost: ";
+    cmd += HOST;
+    cmd += "\r\nCache-Control: no-cache\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: ";
+    cmd += payload.length();
+    cmd += "\r\n\r\n";
+    cmd += payload;
+    cmd += "\r\n";
+    mySerial.print("AT+CIPSEND=");
+    mySerial.println(cmd.length());
+    if(mySerial.find(">"))
+    {
+    }else
+    {
+      mySerial.println("AT+CIPCLOSE");
+      delay(1000);
+      return;
+    }
+    mySerial.print(cmd);
+    // flash LED to let us know that msg sent
+    flash();
+    Serial.println("Successful upload.");
     delay(1000);
-    return;
+    while (mySerial.available())
+    {
+      char c = mySerial.read();
+    }
   }
-  Serial.print(cmd);
-  // flash LED to let us know that msg sent
-  flash();
-  delay(1000);
-  while (Serial.available())
-  {
-    char c = Serial.read();
-  }
-  delay(600000);
-  delay(600000);
-  delay(591530);  
 }
 
 boolean connectWiFi()
 {
-  Serial.println("AT+CWMODE=1");
+  mySerial.println("AT+CWMODE=1");
+  delay(2000);
   String cmd="AT+CWJAP=\"";
   cmd+=SSID;
   cmd+="\",\"";
   cmd+=PASS;
   cmd+="\"";
-  Serial.println(cmd);
-  delay(2000);
-  if(Serial.find("OK"))
+  mySerial.println(cmd);
+  delay(5000);
+  if(mySerial.find("OK"))
   {
+    Serial.println("Connected to AP");
     return true;
   }else
   {
+    Serial.println("Not connected to AP");
     return false;
   }
 }

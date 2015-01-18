@@ -17,6 +17,7 @@ class CreateReadingsTable extends Migration {
 			$table->increments('id');
 			$table->integer('device');
 			$table->float('temp');
+			$table->bool('heaton');
 			$table->timestamps();
 		});
 	}
