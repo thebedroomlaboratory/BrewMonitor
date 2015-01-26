@@ -6,7 +6,7 @@ Homepage: http://thebedroomlaboratory.com/brewmonitor-the-arduino-and-cloud-base
 
 Demo sites:
 * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/ (PHP - Stable)
-* http://dev.thebedroomlaboratory.com/brewlab/ (Node - Unstable)
+* http://dev.thebedroomlaboratory.com/brewmonitor/ (Node - Unstable)
 
 ### Arduino Library Requirements (latest versions):
 
@@ -16,9 +16,9 @@ Demo sites:
 ### REST API Format
 
 * GET
-  * http://dev.thebedroomlaboratory.com/brewlab/api/v1.0
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0
 * POST
-  * http://dev.thebedroomlaboratory.com/brewlab/api/v1.0
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0
   * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
 
 ### Installation
@@ -61,9 +61,9 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so
 
 ProxyPreserveHost On
 ProxyRequests Off
-ProxyPass /brewlab/comms ws://127.0.0.1:8123/brewlab/comms
-ProxyPass /brewlab http://127.0.0.1:8123/brewlab
-ProxyPassReverse /brewlab http://127.0.0.1:8123/brewlab
+ProxyPass /brewmonitor/comms ws://127.0.0.1:8123/brewmonitor/comms
+ProxyPass /brewmonitor http://127.0.0.1:8123/brewmonitor
+ProxyPassReverse /brewmonitor http://127.0.0.1:8123/brewmonitor
 ```
 
 You can do this using:
@@ -72,7 +72,7 @@ You can do this using:
  
 After that, check that your node-red app/server settings match up. This can be found in `Backend/settings.js`:
 * `uiPort: 8123,`
-* `httpRoot: '/brewlab',`
+* `httpRoot: '/brewmonitor',`
 
 You may as well allow AJAX calls from other servers at this point too
 ```bash
@@ -86,4 +86,9 @@ You may as well allow AJAX calls from other servers at this point too
 ```bash
 ./startNodeRed.sh
 ```
-The Node-Red backend can then be found at http://domain/brewlab/
+This launches the Node-Red server which can then be found at http://domain/brewmonitor/. To run it as a daemon, do the following (sudo may be required for global npm install):
+```bash
+cd Backend/node-red
+npm install forever -g
+forever start red.js ../BrewMonitor.json
+```
