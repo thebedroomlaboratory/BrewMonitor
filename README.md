@@ -4,7 +4,9 @@
 
 Homepage: http://thebedroomlaboratory.com/brewmonitor-the-arduino-and-cloud-based-homebrewing-controller/
 
-Demo site: http://dev.thebedroomlaboratory.com/brewlab/
+Demo sites:
+* http://dev.thebedroomlaboratory.com/~martin/brewmonitor/ (PHP - Stable)
+* http://dev.thebedroomlaboratory.com/brewlab/ (Node - Unstable)
 
 ### Arduino Library Requirements (latest versions):
 
