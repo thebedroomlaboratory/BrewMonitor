@@ -10,17 +10,20 @@ class ReadingTableSeeder extends Seeder
 
 		Reading::create(array(
 			'device' => 1,
-			'temp' => 20.5
+			'temp' => 20.5,
+			'heaton' => 0
 		));
 
 		Reading::create(array(
 			'device' => 1,
 			'temp' => 20.7
+			'heaton' => 0
 		));
 
 		Reading::create(array(
 			'device' => 1,
 			'temp' => 21.0
+			'heaton' => 0
 		));
 	}
 

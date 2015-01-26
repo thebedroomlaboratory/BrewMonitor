@@ -8,9 +8,11 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- load bootstrap via cdn -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	<style>
-		body 		{ padding-top:30px; }
+		body 		{ padding-top:0px; }
 		form 		{ padding-bottom:20px; }
 		.comment 	{ padding-bottom:20px; }
+		.page-header	{ margin-top:0; }
+		h2		{ margin-top:10px; }
 	</style>
 
 	<!-- JS -->
@@ -23,7 +25,7 @@
 		<script type="text/javascript" src="js/services/readingService.js"></script> <!-- load our service -->
 		<script type="text/javascript" src="js/app.js"></script> <!-- load our application -->
 		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/graphing/line-chart.min.js"></script>
+		<script type="text/javascript" src="js/graphing/line-chart.min.js""></script>
 		<script type="text/javascript" src="js/graphing/moment.min.js"></script>
 		<script type="text/javascript" src="js/graphing/angular-moment.min.js"></script>
 

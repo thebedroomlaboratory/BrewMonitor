@@ -9,8 +9,13 @@ class ReadingController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Reading::where('created_at', '>', Carbon\Carbon::now()->subDays(30))->orderBy('created_at', 'desc')->get();
-		return Response::json($records->reverse());
+		//$records = Reading::orderBy('id', 'desc')->take(1000)->get();
+		//$records = Reading::where('device', '=', 2)->where('created_at', '>', Carbon\Carbon::now()->subDays(30))->whereRaw('id % 30 = 0' )->orderBy('created_at', 'desc')->get();
+		$records = Reading::where('device', '=', 2)
+				->where('created_at', '>', Carbon\Carbon::now()->subDays(30))
+				->orderBy('created_at', 'asc')
+				->get();
+		return Response::json($records);
 	}
 
 
@@ -23,7 +28,8 @@ class ReadingController extends \BaseController {
 	{
 		Reading::create(array(
 			'device' => Input::get('device'),
-			'temp' => Input::get('temp')
+			'temp' => Input::get('temp'),
+			'heaton' => Input::get('heaton')
 		));
 
 		return Response::json(array('success' => true));
