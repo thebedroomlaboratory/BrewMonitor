@@ -4,7 +4,7 @@
 
 Homepage: http://thebedroomlaboratory.com/brewmonitor-the-arduino-and-cloud-based-homebrewing-controller/
 
-Demo site: http://dev.thebedroomlaboratory.com/~martin/brewmonitor/
+Demo site: http://dev.thebedroomlaboratory.com/brewlab/
 
 ### Arduino Library Requirements (latest versions):
 
@@ -14,9 +14,9 @@ Demo site: http://dev.thebedroomlaboratory.com/~martin/brewmonitor/
 ### REST API Format
 
 * GET
-  * http://opus-sahara.codio.io:1880/api/brew/v1.0
+  * http://dev.thebedroomlaboratory.com/brewlab/api/v1.0
 * POST
-  * http://opus-sahara.codio.io:1880/api/brew/v1.0
+  * http://dev.thebedroomlaboratory.com/brewlab/api/v1.0
   * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
 
 ### Installation
