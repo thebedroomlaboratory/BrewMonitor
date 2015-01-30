@@ -5,6 +5,7 @@
 Homepage: http://thebedroomlaboratory.com/brewmonitor-the-arduino-and-cloud-based-homebrewing-controller/
 
 Demo sites:
+
 * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/ (PHP - Stable)
 * http://dev.thebedroomlaboratory.com/brewmonitor/ (Node - Unstable)
 
@@ -15,11 +16,11 @@ Demo sites:
 
 ### REST API Format
 
-* GET
-  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0
-* POST
-  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0
-  * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
+* For a list of all available commands and their formats, go to either:
+  * PHP Backend
+    * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/v1.0/help
+  * Node.js Backend
+    * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
 
 ### Installation
 
@@ -48,12 +49,11 @@ npm install mongodb
 rm settings.js
 ln -s ../settings.js
 ```
-If you have any complication or to install the Additional Nodes, check the instructions on http://nodered.org/docs/getting-started/installation.html
+If you have any complications or want to install Additional Nodes, check the instructions on http://nodered.org/docs/getting-started/installation.html
 
 #### Apache2 and Node-Red at same time
 
 Configure Apache with the following settings:
-
 ```bash
 LoadModule proxy_module modules/mod_proxy.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
@@ -65,16 +65,18 @@ ProxyPass /brewmonitor/comms ws://127.0.0.1:8123/brewmonitor/comms
 ProxyPass /brewmonitor http://127.0.0.1:8123/brewmonitor
 ProxyPassReverse /brewmonitor http://127.0.0.1:8123/brewmonitor
 ```
-
 You can do this using:
+
 * `a2enmod` and `/etc/apache2/sites-enabled/000-default.conf` (Ubuntu)
 * Or all in your `httpd.conf` file by adding the text as above (codio.com)
+* Either way, remember to restart Apache afterwards so that the settings can take effect
  
 After that, check that your node-red app/server settings match up. This can be found in `Backend/settings.js`:
+
 * `uiPort: 8123,`
 * `httpRoot: '/brewmonitor',`
 
-You may as well allow AJAX calls from other servers at this point too
+You may as well allow AJAX calls from other servers at this point too, if required (Ionic app for instance...)
 ```bash
  httpNodeCors: {
   origin: "*",
@@ -83,6 +85,7 @@ You may as well allow AJAX calls from other servers at this point too
 ```
 
 ### Running Server
+Make sure MongoDB and Apache are running, then run the following command:
 ```bash
 ./startNodeRed.sh
 ```

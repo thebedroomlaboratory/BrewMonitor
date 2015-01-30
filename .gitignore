@@ -1,5 +1,5 @@
 Backend/node-red
-index.html
+index.php
 *.ico
 Arduino/BrewMonitor/SSID.txt
 Arduino/BrewMonitor/.pioenvs/
@@ -7,3 +7,4 @@ Arduino/BrewMonitor/.sconsign.dblite
 Arduino/BrewMonitor/lib/
 Arduino/BrewMonitor/platformio.ini
 Arduino/BrewMonitor/src/
+.settings
