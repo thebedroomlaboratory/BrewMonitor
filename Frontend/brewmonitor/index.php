@@ -18,7 +18,7 @@
 |
 */
 
-require __DIR__.'/../../brewmonitor/bootstrap/autoload.php';
+require __DIR__.'/../../Backend/laravel/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ require __DIR__.'/../../brewmonitor/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../../brewmonitor/bootstrap/start.php';
+$app = require_once __DIR__.'/../../Backend/laravel/bootstrap/start.php';
 
 /*
 |--------------------------------------------------------------------------

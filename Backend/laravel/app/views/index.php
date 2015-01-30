@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="js/services/readingService.js"></script> <!-- load our service -->
 		<script type="text/javascript" src="js/app.js"></script> <!-- load our application -->
 		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/graphing/line-chart.min.js""></script>
+		<script type="text/javascript" src="js/graphing/line-chart.min.js"></script>
 		<script type="text/javascript" src="js/graphing/moment.min.js"></script>
 		<script type="text/javascript" src="js/graphing/angular-moment.min.js"></script>
 

@@ -26,6 +26,14 @@ Demo sites:
 
 First thing to do is to clone this repository. All paths are given relative to the root of the repository.
 
+#### PHP Backend
+
+* Install php5, php5-mcrypt, php5-apache2, php5-zip, composer
+* `composer self-update`
+* `composer global require "laravel/installer=~1.1"`
+* add ~/.composer/vendor/bin to $PATH in .bash_profile
+* `cd Backend`
+
 #### MongoDB
 
 Make sure Mongo is installed and running. A dump of the DB was created in `Backend` using:
