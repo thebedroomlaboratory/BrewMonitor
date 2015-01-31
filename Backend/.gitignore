@@ -1,0 +1,11 @@
+laravel/*
+!laravel/app/config/database.php
+!laravel/app/controllers/ReadingController.php
+!laravel/app/database/migrations/2014_09_26_172314_create_readings_table.php
+!laravel/app/database/seeds/DatabaseSeeder.php
+!laravel/app/database/seeds/ReadingTableSeeder.php
+!laravel/app/models/Reading.php
+!laravel/app/routes.php
+!laravel/app/views/index.php
+!laravel/bootstrap/paths.php
+!laravel/composer.json

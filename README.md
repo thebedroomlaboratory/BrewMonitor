@@ -28,11 +28,17 @@ First thing to do is to clone this repository. All paths are given relative to t
 
 #### PHP Backend
 
-* Install php5, php5-mcrypt, php5-apache2, php5-zip, composer
+* Install php5, php5-mcrypt, php5-apache2, php5-zip, php5-pdo-mysql, composer
 * `composer self-update`
 * `composer global require "laravel/installer=~1.1"`
 * add ~/.composer/vendor/bin to $PATH in .bash_profile
 * `cd Backend`
+* `wget https://github.com/laravel/laravel/archive/master.zip`
+* `rm -r laravel`
+* `unzip master.zip`
+* `mv laravel-master laravel`
+* `cd laravel`
+* `git checkout .`
 
 #### MongoDB
 
