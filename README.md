@@ -16,11 +16,17 @@ Demo sites:
 
 ### REST API Format
 
-* For a list of all available commands and their formats, go to either:
-  * PHP Backend
-    * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/v1.0/help
-  * Node.js Backend
-    * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
+* PHP Backend
+  * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/help (to be added but this is a placeholder)
+  * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/readings (GET)
+  * http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/readings (POST)
+    * as URL parameters
+    * `http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/readings/?device=1&temp=20.0&heaton=1.0`
+* Node.js Backend
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (GET)
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (POST)
+    * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
 
 ### Installation
 
