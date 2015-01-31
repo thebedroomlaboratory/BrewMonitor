@@ -8,3 +8,4 @@ Arduino/BrewMonitor/lib/
 Arduino/BrewMonitor/platformio.ini
 Arduino/BrewMonitor/src/
 .settings
+.codio
