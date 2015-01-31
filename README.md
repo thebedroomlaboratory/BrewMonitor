@@ -24,11 +24,11 @@ Demo sites:
 
 ### Installation
 
-First thing to do is to clone this repository. All paths are given relative to the root of the repository.
+First thing to do is to clone this repository. All paths are given relative to the root of the repository. From here on it is also assumed that the root of the repository will show up at http://domain/
 
-#### PHP Backend
+#### Stable Version (PHP/MySQL Backend with Angular on frontend)
 
-* Install php5, php5-mcrypt, php5-apache2, php5-zip, php5-pdo-mysql, composer
+* Install apache2 mysql php5 php5-mcrypt php5-apache2 php5-zip php5-mysql php5-pdo-mysql phpmyadmin composer
 * `composer self-update`
 * `composer global require "laravel/installer=~1.1"`
 * add ~/.composer/vendor/bin to $PATH in .bash_profile
@@ -39,8 +39,22 @@ First thing to do is to clone this repository. All paths are given relative to t
 * `mv laravel-master laravel`
 * `cd laravel`
 * `git checkout .`
+* `composer install`
+* `cd ../../Frontend/brewmonitor/js`
+* `mkdir graphing`
+* `cd graphing`
+* `wget http://dev.thebedlab.com/~martin/brewmonitor/js/graphing/angular-moment.min.js; wget http://dev.thebedlab.com/~martin/brewmonitor/js/graphing/angular-moment.min.js.map; wget http://dev.thebedlab.com/~martin/brewmonitor/js/graphing/line-chart.min.js; wget http://dev.thebedlab.com/~martin/brewmonitor/js/graphing/moment.min.js`
+* Configure your username/password settings in `Backend/laravel/app/config/database.php`
+* Create database table and seed it with some sample data
+  * Use phpmyadmin to create table called `brewmonitor`
+  * `cd Backend/laravel`
+  * `php artisan migrate`
+  * `php artisan db:seed`
+* That's it! You should now be able to see a graph in your browser at http://domain/Frontend/brewmonitor/ once apache2 and mysql are running
 
-#### MongoDB
+#### Development Version (Node.js/MongoDB Backend)
+
+##### MongoDB
 
 Make sure Mongo is installed and running. A dump of the DB was created in `Backend` using:
 ```bash
@@ -53,7 +67,7 @@ cd Backend
 mongorestore
 ```
 
-#### Node-Red
+##### Node-Red
 
 Download and extract node-red zip file from http://nodered.org/ to `Backend/node-red`
 ```bash
@@ -65,7 +79,7 @@ ln -s ../settings.js
 ```
 If you have any complications or want to install Additional Nodes, check the instructions on http://nodered.org/docs/getting-started/installation.html
 
-#### Apache2 and Node-Red at same time
+##### Apache2 and Node-Red at same time
 
 Configure Apache with the following settings:
 ```bash
@@ -98,7 +112,7 @@ You may as well allow AJAX calls from other servers at this point too, if requir
  },
 ```
 
-### Running Server
+##### Running Server
 Make sure MongoDB and Apache are running, then run the following command:
 ```bash
 ./startNodeRed.sh

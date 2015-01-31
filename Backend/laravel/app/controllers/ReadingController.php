@@ -11,7 +11,7 @@ class ReadingController extends \BaseController {
 	{
 		//$records = Reading::orderBy('id', 'desc')->take(1000)->get();
 		//$records = Reading::where('device', '=', 2)->where('created_at', '>', Carbon\Carbon::now()->subDays(30))->whereRaw('id % 30 = 0' )->orderBy('created_at', 'desc')->get();
-		$records = Reading::where('device', '=', 2)
+		$records = Reading::where('device', '=', 1)
 				->where('created_at', '>', Carbon\Carbon::now()->subDays(30))
 				->orderBy('created_at', 'asc')
 				->get();
