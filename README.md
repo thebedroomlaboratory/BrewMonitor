@@ -24,7 +24,9 @@ Demo sites:
     * `http://dev.thebedroomlaboratory.com/~martin/brewmonitor/api/readings/?device=1&temp=20.0&heaton=1.0`
 * Node.js Backend
   * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
-  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (GET)
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list (GET)
+    * URL parameters optional, e.g.
+    * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list?devid=1&userid=1
   * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (POST)
     * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
 
