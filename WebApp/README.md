@@ -6,16 +6,16 @@ First thing to do is to clone this repository. All paths are given relative to t
 3. Install Gulp globally with `npm install -g gulp`.
 4. Run the application using the default gulp task with the command `gulp`.
     
-    ### REST API Format
-    The Api will follow the below format
+### REST API Format
+The Api will follow the below format
 
-    * Node.js Backend
-      * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
-      * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list (GET)
-        * URL parameters optional, e.g.
-        * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list?devid=1&userid=1
-      * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (POST)
-        * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
+* Node.js Backend
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/help
+  * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list (GET)
+  * URL parameters optional, e.g.
+    * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0/list?devid=1&userid=1
+    * http://dev.thebedroomlaboratory.com/brewmonitor/api/v1.0 (POST)
+      * `{ "userid": 0, "devid": 0, "temps": [{"sensid": 0, "temp": 20.2}, {"sensid": 1, "temp": 20.8}], "timestamp": "2014-11-15T16:56:08.506Z" }`
 
 
     ### To Do
@@ -47,7 +47,6 @@ First thing to do is to clone this repository. All paths are given relative to t
    - [ ] agree on build rules
    - [ ] fail build on agreed rules
    - [ ] auto deploy to test server on build success
-
 9. Stretch goals
    - [ ] investigare [cucumber](https://cukes.info/) for Human readable testing
    - [ ] enforce testing style guide
