@@ -27,17 +27,22 @@ First thing to do is to clone this repository. All paths are given relative to t
    - [ ] replace dummy data with mongodb
    - [x] create model for readings
    - [ ] create basic CRUD operations
-3. [ ] remove bower dependiences (should aim to use npm modules)
-4. [ ] incorporate Webpack/browserify
+3. [ ] include Basic local and Social Auth
+   - [ ] local
+   - [ ] facebook
+   - [ ] Google
+   - [ ] twitter
+4. [ ] remove bower dependiences (should aim to use npm modules)
+5. [ ] incorporate Webpack/browserify
    - [ ] choose which framework to use
    - [ ] create gulp build task to build using Webpack/browserify
-5. [ ] Create and enforce coding style
+6. [ ] Create and enforce coding style
    - [ ] incorporate jshint
    - [ ] incorporate Tests
-6. [ ] Incorporate TDD/BDD
+7. [ ] Incorporate TDD/BDD
    - [ ] investigate preferred testing framework
    - [ ] create `gulp test` task
-7. [ ] create automated build
+8. [ ] create automated build
    - [ ] create travisCi build
    - [ ] agree on build rules
    - [ ] fail build on agreed rules
