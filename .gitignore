@@ -9,3 +9,7 @@ Arduino/BrewMonitor/platformio.ini
 Arduino/BrewMonitor/src/
 .settings
 .codio
+WebApp/node_modules
+WebApp/client/vendor
+WebApp/dev
+.idea/

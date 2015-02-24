@@ -1,0 +1,26 @@
+{
+  "name": "brewmonitor",
+  "version": "1.0.0",
+  "description": "brewmonitor thebedroomlaboratory.com thebedlab",
+  "main": "app.js",
+  "dependencies": {
+    "errorhandler": "^1.3.4",
+    "express": "^4.11.2",
+    "gulp": "^3.8.11",
+    "mongoose": "^3.8.23",
+    "morgan": "^1.5.1"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "brewmonitor",
+    "thebedroomlaboratory.com",
+    "thebedlab"
+  ],
+  "author": "bedlab",
+  "license": "MIT"
+}

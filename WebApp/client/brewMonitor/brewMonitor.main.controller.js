@@ -1,4 +1,5 @@
-// public/js/controllers/mainCtrl.js
+'use strict';
+
 angular.module('mainCtrl', [])
 
 	// inject the Reading service into our controller
@@ -7,49 +8,49 @@ angular.module('mainCtrl', [])
 		$scope.readingData = {};
 
 		$scope.mygdata = [];
-  
-  		// Column
-  		$scope.mygoptions = {
+
+		// Column
+		$scope.mygoptions = {
 			axes: {x: {type: "date", key: "x"}, y: {type: "linear", min: "15"}},
-    			tooltip: {
-    				mode: "scrubber",
+			tooltip: {
+				mode: "scrubber",
 				formatter: function (x, y, series) {
-      					return moment(x).fromNow() + ' : ' + y;
-    				}
-    			},
-    			lineMode: 'linear',
-    			tension: 0.7,
-    			series: [
-    			{
-      				y: "y",
-      				label: "Beer Temperature",
-      				color: "#FBB117",
-      				axis: "y",
-      				type: "line",
-      				thickness: "1px",
-      				id: "series_0"
-    			},
-                        {
-                                y: "y2",
-                                label: "Target Temperature \(20C\)",
-                                color: "#aa0000",
-                                axis: "y",
-                                type: "line",
-                                thickness: "1px",
-                                id: "series_1"
-                        },
-                        {
-                                y: "y3",
-                                label: "Heating turns on below this \(19.8C\)",
-                                color: "#0000aa",
-                                axis: "y",
-                                type: "line",
-                                thickness: "1px",
-                                id: "series_2"
-                        }],
-  			drawLegend: true,
-  			drawDots: false,
-  			columnsHGap: 5
+					return moment(x).fromNow() + ' : ' + y;
+				}
+			},
+			lineMode: 'linear',
+			tension: 0.7,
+			series: [
+				{
+					y: "y",
+					label: "Beer Temperature",
+					color: "#FBB117",
+					axis: "y",
+					type: "line",
+					thickness: "1px",
+					id: "series_0"
+				},
+				{
+					y: "y2",
+					label: "Target Temperature \(20C\)",
+					color: "#aa0000",
+					axis: "y",
+					type: "line",
+					thickness: "1px",
+					id: "series_1"
+				},
+				{
+					y: "y3",
+					label: "Heating turns on below this \(19.8C\)",
+					color: "#0000aa",
+					axis: "y",
+					type: "line",
+					thickness: "1px",
+					id: "series_2"
+				}],
+			drawLegend: true,
+			drawDots: false,
+			columnsHGap: 5
 		};
 
 		// loading variable to show the spinning loading icon
@@ -67,9 +68,9 @@ angular.module('mainCtrl', [])
 					var d = moment(val.created_at+"Z");
 					//d.tz('').format('ha z');
 					//var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-                    			$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
+					$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
 					console.log(val.created_at);
-                		})
+				})
 			});
 
 		// function to handle submitting the form
@@ -87,11 +88,11 @@ angular.module('mainCtrl', [])
 						.success(function(getData) {
 							$scope.readings = getData;
 							$scope.loading = false;
-							$.each(data,function(key,val){  
-                    						var t = val.created_at.split(/[- :]/);
+							$.each(data,function(key,val){
+								var t = val.created_at.split(/[- :]/);
 								var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-                    						$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
-                					})
+								$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
+							})
 						});
 
 				})
@@ -103,7 +104,7 @@ angular.module('mainCtrl', [])
 		// function to handle deleting a reading
 		// DELETE A READING ====================================================
 		$scope.deleteReading = function(id) {
-			$scope.loading = true; 
+			$scope.loading = true;
 
 			// use the function we created in our service
 			Reading.destroy(id)
@@ -114,15 +115,14 @@ angular.module('mainCtrl', [])
 						.success(function(getData) {
 							$scope.readings = getData;
 							$scope.loading = false;
-							$.each(data,function(key,val){  
-                    						var t = val.created_at.split(/[- :]/);
+							$.each(data,function(key,val){
+								var t = val.created_at.split(/[- :]/);
 								var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-                    						$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
-                					})
+								$scope.mygdata.push({x:d,y:val.temp,y2:20,y3:19.8});
+							})
 						});
 
 				});
 		};
 
 	});
-	

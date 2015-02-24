@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+
+	<meta charset="UTF-8">
+	<title>BrewMonitor</title>
+	<style>
+		.chart {
+			width: 500px;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+<h3>BOOM!</h3>
+<div ng-app="brewMonitor" ng-controller="brewController">
+	<div
+			data-ac-chart="'line'"
+			data-ac-data="data"
+			data-ac-config="config"
+			class="chart">
+	</div>
+<script src="vendor/d3/d3.js"></script>
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-charts/dist/angular-charts.js"></script>
+<script>
+
+	angular.module('brewMonitor', ['angularCharts'])
+			.controller('brewController', function ($scope) {
+				$scope.config = {
+					title: 'Products',
+					tooltips: true,
+					labels: false,
+					mouseover: function() {},
+					mouseout: function() {},
+					click: function() {},
+					legend: {
+						display: true,
+
+						position: 'right'
+					}
+				};
+
+				$scope.data = {
+					series: ['Brew1'],//, 'Income', 'Expense', 'Laptops', 'Keyboards'],
+					data: [{
+						x: 1,
+						y: [20],//, 500, 0],
+						tooltip: "this is tooltip"
+					}, {
+						x: 2,
+						y: [18]//, 100, 100]
+					}, {
+						x: 3,
+						y: [22]
+					}, {
+						x: 4,
+						y: [19]//, 0, 879]
+					},{
+						x: 5,
+						y: [20],//, 500, 0],
+						tooltip: "this is tooltip"
+					}, {
+						x: 6,
+						y: [18]//, 100, 100]
+					}, {
+						x: 7,
+						y: [22]
+					}, {
+						x: 8,
+						y: [19]//, 0, 879]
+					}]
+				};
+			});
+
+</script>
+</body>
+</html>

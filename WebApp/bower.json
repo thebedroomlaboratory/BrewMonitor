@@ -1,0 +1,24 @@
+{
+  "name": "BrewMonitor",
+  "version": "0.0.1",
+  "homepage": "http://thebedlab.com/brewmonitor-the-arduino-and-cloud-based-homebrewing-controller/",
+  "description": "A Web Based Appliction for monitoring a beer brew",
+  "keywords": [
+    "thebedlab.com",
+    "thebedroomlaboratory.com",
+    "BrewMonitor",
+    "beer",
+    "brewing"
+  ],
+  "authors": [
+    "thebedroomlaboratory.com"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular-charts": "~0.2.7",
+    "angular": "~1.3.14",
+    "angular-moment": "~0.9.0",
+    "n3-line-chart": "~1.1.6"
+  }
+}
