@@ -9,6 +9,9 @@ angular.module('readingService', [])
 			get : function() {
 				return $http.get('brewmonitor/api/readings');
 			},
+			getNew : function(){
+				return $http.get('brewmonitor/api/list');
+			},
 
 			// save a reading (pass in reading data)
 			save : function(readingData) {

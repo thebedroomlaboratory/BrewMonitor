@@ -1,81 +1,78 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
-
 	<meta charset="UTF-8">
+	<!--<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(n,e,t){function r(t){if(!e[t]){var o=e[t]={exports:{}};n[t][0].call(o.exports,function(e){var o=n[t][1][e];return r(o?o:e)},o,o.exports)}return e[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({QJf3ax:[function(n,e){function t(n){function e(e,t,a){n&&n(e,t,a),a||(a={});for(var u=c(e),f=u.length,s=i(a,o,r),p=0;f>p;p++)u[p].apply(s,t);return s}function a(n,e){f[n]=c(n).concat(e)}function c(n){return f[n]||[]}function u(){return t(e)}var f={};return{on:a,emit:e,create:u,listeners:c,_events:f}}function r(){return{}}var o="nr@context",i=n("gos");e.exports=t()},{gos:"7eSDFh"}],ee:[function(n,e){e.exports=n("QJf3ax")},{}],3:[function(n,e){function t(n){return function(){r(n,[(new Date).getTime()].concat(i(arguments)))}}var r=n("handle"),o=n(1),i=n(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","trackUserAction","finished","traceEvent","inlineHit","noticeError"];o(a,function(n,e){window.NREUM[e]=t("api-"+e)}),e.exports=window.NREUM},{1:12,2:13,handle:"D5DuLP"}],gos:[function(n,e){e.exports=n("7eSDFh")},{}],"7eSDFh":[function(n,e){function t(n,e,t){if(r.call(n,e))return n[e];var o=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(n,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return n[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=t},{}],D5DuLP:[function(n,e){function t(n,e,t){return r.listeners(n).length?r.emit(n,e,t):(o[n]||(o[n]=[]),void o[n].push(e))}var r=n("ee").create(),o={};e.exports=t,t.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(n,e){e.exports=n("D5DuLP")},{}],XL7HBI:[function(n,e){function t(n){var e=typeof n;return!n||"object"!==e&&"function"!==e?-1:n===window?0:i(n,o,function(){return r++})}var r=1,o="nr@id",i=n("gos");e.exports=t},{gos:"7eSDFh"}],id:[function(n,e){e.exports=n("XL7HBI")},{}],G9z0Bl:[function(n,e){function t(){var n=v.info=NREUM.info;if(n&&n.licenseKey&&n.applicationID&&f&&f.body){c(d,function(e,t){e in n||(n[e]=t)}),v.proto="https"===l.split(":")[0]||n.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=f.createElement("script");e.src=v.proto+n.agent,f.body.appendChild(e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=n("handle"),c=n(1),u=(n(2),window),f=u.document,s="addEventListener",p="attachEvent",l=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-536.min.js"},v=e.exports={offset:i(),origin:l,features:{}};f[s]?(f[s]("DOMContentLoaded",o,!1),u[s]("load",t,!1)):(f[p]("onreadystatechange",r),u[p]("onload",t)),a("mark",["firstbyte",i()])},{1:12,2:3,handle:"D5DuLP"}],loader:[function(n,e){e.exports=n("G9z0Bl")},{}],12:[function(n,e){function t(n,e){var t=[],o="",i=0;for(o in n)r.call(n,o)&&(t[i]=e(o,n[o]),i+=1);return t}var r=Object.prototype.hasOwnProperty;e.exports=t},{}],13:[function(n,e){function t(n,e,t){e||(e=0),"undefined"==typeof t&&(t=n?n.length:0);for(var r=-1,o=t-e||0,i=Array(0>o?0:o);++r<o;)i[r]=n[e+r];return i}e.exports=t},{}]},{},["G9z0Bl"]);</script>-->
 	<title>BrewMonitor</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- load bootstrap via cdn -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	<style>
-		.chart {
-			width: 500px;
-			height: 500px;
-		}
+		body 		{ padding-top:0px; }
+		form 		{ padding-bottom:20px; }
+		.comment 	{ padding-bottom:20px; }
+		.page-header	{ margin-top:0; }
+		h2		{ margin-top:10px; }
 	</style>
+
+	<!-- JS -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+	<!-- ANGULAR -->
+	<!-- all angular resources will be loaded from the /public folder -->
+	<script type="text/javascript" src="brewMonitor/brewMonitor.main.controller.js"></script> <!-- load our controller -->
+	<script type="text/javascript" src="brewMonitor/brewMonitor.readings.service.js"></script> <!-- load our service -->
+	<script type="text/javascript" src="brewMonitor/index.js"></script> <!-- load our application -->
+	<script type="text/javascript" src="vendor/d3/d3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="vendor/n3-line-chart/build/line-chart.min.js"></script>
+	<script type="text/javascript" src="vendor/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-moment/angular-moment.min.js"></script>
+
 </head>
-<body>
-<h3>BOOM!</h3>
-<div ng-app="brewMonitor" ng-controller="brewController">
-	<div
-			data-ac-chart="'line'"
-			data-ac-data="data"
-			data-ac-config="config"
-			class="chart">
+<!-- declare our angular app and controller -->
+<body class="container" ng-app="readingApp" ng-controller="mainController">
+<div class="col-md-8 col-md-offset-2">
+
+	<!-- PAGE TITLE =============================================== -->
+	<div class="page-header">
+		<h2>BrewMonitor Application</h2>
+		<h4>Temperature Reading System</h4>
 	</div>
-<script src="vendor/d3/d3.js"></script>
-<script src="vendor/angular/angular.js"></script>
-<script src="vendor/angular-charts/dist/angular-charts.js"></script>
-<script>
 
-	angular.module('brewMonitor', ['angularCharts'])
-			.controller('brewController', function ($scope) {
-				$scope.config = {
-					title: 'Products',
-					tooltips: true,
-					labels: false,
-					mouseover: function() {},
-					mouseout: function() {},
-					click: function() {},
-					legend: {
-						display: true,
+	<!-- NEW READING FORM =============================================== -->
+	<!-- <form ng-submit="submitReading()"> 
+		<div class="form-group">
+			<input type="number" step="any" class="form-control input-sm" name="device" ng-model="readingData.device">
+		</div>
 
-						position: 'right'
-					}
-				};
+		<div class="form-group">
+			<input type="number" step="any" class="form-control input-sm" name="reading" ng-model="readingData.temp">
+		</div>
 
-				$scope.data = {
-					series: ['Brew1'],//, 'Income', 'Expense', 'Laptops', 'Keyboards'],
-					data: [{
-						x: 1,
-						y: [20],//, 500, 0],
-						tooltip: "this is tooltip"
-					}, {
-						x: 2,
-						y: [18]//, 100, 100]
-					}, {
-						x: 3,
-						y: [22]
-					}, {
-						x: 4,
-						y: [19]//, 0, 879]
-					},{
-						x: 5,
-						y: [20],//, 500, 0],
-						tooltip: "this is tooltip"
-					}, {
-						x: 6,
-						y: [18]//, 100, 100]
-					}, {
-						x: 7,
-						y: [22]
-					}, {
-						x: 8,
-						y: [19]//, 0, 879]
-					}]
-				};
-			});
+		<div class="form-group text-right">
+			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+		</div>
+	</form> -->
 
-</script>
+	<!-- LOADING ICON =============================================== -->
+	<!-- show loading icon if the loading variable is set to true -->
+	<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+
+	<!-- THE READINGS =============================================== -->
+	<!-- hide these readings if the loading variable is true -->
+	<!-- <div class="reading" ng-hide="loading" ng-repeat="reading in readings">
+		<h3>Reading #{{ reading.id }} <small>by device {{ reading.device }}</h3>
+		<p>{{ reading.temp }}</p>
+
+		<p><a href="#" ng-click="deleteReading(reading.id)" class="text-muted">Delete</a></p>
+	</div> -->
+	<div class="reading" ng-hide="loading">
+		<linechart data="mygdataNewFormat" options="mygoptions"></linechart>
+	</div>
+
+</div>
+<!--<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","licenseKey":"2327c9e883","applicationID":"4106726","transactionName":"Z1BTZhNTDEdVBRIIWl4acFEVWw1aGw==","queueTime":0,"applicationTime":49,"atts":"SxdQEFtJH0k=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-536.min.js"}</script>-->
 </body>
 </html>

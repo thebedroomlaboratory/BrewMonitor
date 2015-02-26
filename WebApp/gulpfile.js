@@ -1,8 +1,10 @@
 'use strict';
 
 var gulp = require('gulp');
-
+var mongoose = require('mongoose');
 var server = require('./server');
+var BrewMonitor = require('./server/brewmonitor/brew.model');
+var dummyData = require('./server/brewmonitor/dummydata');
 
 /**
  *
@@ -27,4 +29,28 @@ gulp.task('copy', function(){
  */
 gulp.task('default',['copy'], function(){
     server();
-})
+});
+
+gulp.task('populateDB', function(){
+	mongoose.connect('mongodb://localhost/brewmonitor', function(err){
+		var data = dummyData.new;
+		for(var i = 0, len = data.length; i < len; i++){
+			var reading = new BrewMonitor();
+			reading.devid = data[i].devid;
+			reading.temps = data[i].temps;
+			reading.userid = data[i].userid;
+			reading.save(function(err){
+				if(err) console.error('Error inserting', err);
+				if(i+1 == len){
+					mongoose.connection.close(function(err){
+						if(err) console.log('DB Population Error', err);
+						else console.log('DB Populated');
+
+					});
+				}
+			});
+		}
+	});
+
+
+});
