@@ -41,8 +41,8 @@ angular.module('mainCtrl', [])
 				},
 				{
 					y: "y2",
-					label: "Target Temperature \(20C\)",
-					color: "#aa0000",
+					label: "Beer 2 Temperature",
+					color: "#FBB117",
 					axis: "y",
 					type: "line",
 					thickness: "1px",
@@ -50,12 +50,21 @@ angular.module('mainCtrl', [])
 				},
 				{
 					y: "y3",
+					label: "Target Temperature \(20C\)",
+					color: "#aa0000",
+					axis: "y",
+					type: "line",
+					thickness: "1px",
+					id: "series_2"
+				},
+				{
+					y: "y4",
 					label: "Heating turns on below this \(19.8C\)",
 					color: "#0000aa",
 					axis: "y",
 					type: "line",
 					thickness: "1px",
-					id: "series_2"
+					id: "series_3"
 				}],
 			drawLegend: true,
 			drawDots: false,
@@ -131,7 +140,7 @@ angular.module('mainCtrl', [])
 					//d.tz('').format('ha z');
 					//var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
 
-					$scope.mygdataNewFormat.push({x:plot.x,y:plot.y,y2:plot.y2,y3:18});
+					$scope.mygdataNewFormat.push({x:plot.x,y:plot.y,y2:plot.y2,y3:20,y4:19.8});
 
 					//$scope.mygdataNewFormat.push({x:d,y:plot.y,y2:plot.y2,y3:plot.y3});
 					//plot);//
