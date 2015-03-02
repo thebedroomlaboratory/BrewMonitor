@@ -5,6 +5,13 @@ First thing to do is to clone this repository. All paths are given relative to t
 2. Install the required bower dependencies `bower install`.
 3. Install Gulp globally with `npm install -g gulp`.
 4. Run the application using the default gulp task with the command `gulp`.
+
+###Gulp Tasks
+Currently there are only a few gulp tasks that do the basics but these will grow and evolve over time:
+
+1. `gulp` - the default task , copy's to dev directory and starts the server
+2. `gulp copy` - currently copys the html and js files and is called as part of the default task
+3. `gulp populateDB` - populates the mongo db with the contents of [dummydata.js](https://github.com/thebedroomlaboratory/BrewMonitor/blob/basic-mean/WebApp/server/brewmonitor/dummydata.js)
     
 ### REST API Format
 The Api will follow the below format
@@ -24,7 +31,8 @@ The Api will follow the below format
    - [x] include routes for readings (starting with dummy data)
    - [x] graph dummy data
 2. [x] create basic gulp task
-   - [ ] replace dummy data with mongodb
+   - [x] replace dummy data with mongodb
+   - [x] create gulp task to populate db with data for development
    - [x] create model for readings
    - [ ] create basic CRUD operations
 3. [ ] include Basic local and Social Auth
