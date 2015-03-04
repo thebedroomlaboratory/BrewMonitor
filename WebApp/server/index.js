@@ -5,8 +5,8 @@
  */
 
 var express = require('express'),
-	//mongoose = require ("mongoose");
-	//bodyParser = require('body-parser'),
+	mongoose = require ("mongoose"),
+	bodyParser = require('body-parser'),
 	//methodOverride = require('method-override'),
 	errorHandler = require('errorhandler'),
 	logger = require('morgan'),
@@ -14,7 +14,7 @@ var express = require('express'),
 	http = require('http'),
 	path = require('path');
 
-//mongoose.connect('mongodb://localhost/brewmonitor');
+mongoose.connect('mongodb://localhost/brewmonitor');
 
 var brewApi = require('./brewmonitor');
 
@@ -30,8 +30,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(logger('dev'));
-//app.use(bodyParser());
-//app.use(methodOverride());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 var env = process.env.NODE_ENV || 'development';
@@ -56,6 +56,8 @@ if (env === 'production') {
 // JSON API
 app.get('/brewmonitor/api/list', brewApi.list);
 app.get('/brewmonitor/api/readings', brewApi.readings);
+app.post('/brewmonitor/api/add', brewApi.add);
+app.post('/brewmonitor/api/name', brewApi.name);
 
 // redirect all others to the index (HTML5 history)
 //app.get('*', routes.index);
