@@ -13,3 +13,4 @@ WebApp/node_modules
 WebApp/client/vendor
 WebApp/dev
 .idea/
+logs/

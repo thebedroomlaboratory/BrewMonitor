@@ -7,13 +7,6 @@ var logger = require('../logger');
  * Serve JSON to our AngularJS client
  */
 
-exports.name = function (req, res) {
-	logger.info('Bob');
-	res.json({
-		name: 'Bob'
-	});
-};
-
 exports.add = function (req, res){
 	console.log('req.body', req.body);
 
@@ -34,6 +27,16 @@ exports.add = function (req, res){
 };
 
 exports.list = function(req, res){
+	Brew.find({},'devid temps userid' ,function(err, readings){
+		if(err){
+			logger.error(err);
+			res.status(500).json(err)
+		}
+		res.status(200).json(readings);
+	});
+}
+
+exports.listdummy = function(req, res){
 	res.status(200).json(dummyData.new);
 };
 
