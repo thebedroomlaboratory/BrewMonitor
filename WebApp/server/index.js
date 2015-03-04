@@ -55,6 +55,7 @@ if (env === 'production') {
 
 // JSON API
 app.get('/brewmonitor/api/list', brewApi.list);
+app.get('/brewmonitor/api/old/list', brewApi.listdummy);
 app.get('/brewmonitor/api/readings', brewApi.readings);
 app.post('/brewmonitor/api/add', brewApi.add);
 

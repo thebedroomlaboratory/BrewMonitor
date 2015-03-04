@@ -17,7 +17,7 @@ angular.module('readingService', [])
 			save : function(readingData) {
 				return $http({
 					method: 'POST',
-					url: 'brewmonitor/api/readings',
+					url: 'brewmonitor/api/add',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(readingData)
 				});

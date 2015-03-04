@@ -21,7 +21,11 @@ exports.add = function (req, res){
 		}
 		else{
 			logger.info(err);
-			res.status(200).json(brew);
+			res.status(200).json({
+				devid: brew.devid,
+				temps: brew.temps,
+				userid: brew.userid
+			});
 		}
 	});
 };
