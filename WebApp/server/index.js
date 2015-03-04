@@ -57,7 +57,6 @@ if (env === 'production') {
 app.get('/brewmonitor/api/list', brewApi.list);
 app.get('/brewmonitor/api/readings', brewApi.readings);
 app.post('/brewmonitor/api/add', brewApi.add);
-app.post('/brewmonitor/api/name', brewApi.name);
 
 // redirect all others to the index (HTML5 history)
 //app.get('*', routes.index);

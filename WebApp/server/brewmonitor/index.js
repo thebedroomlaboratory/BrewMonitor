@@ -34,7 +34,7 @@ exports.list = function(req, res){
 		}
 		res.status(200).json(readings);
 	});
-}
+};
 
 exports.listdummy = function(req, res){
 	res.status(200).json(dummyData.new);
