@@ -7,15 +7,15 @@
 SoftwareSerial mySerial(4, 5); // RX, TX
 #define SSID "SSID"
 #define PASS "PASSWORD"
-#define DST_IP "54.76.114.101" // dev.thebedroomlaboratory.com
+#define DST_IP "52.50.20.110" // dev.thebedlab.com
 #define PATH "/~martin/brewmonitor/api/readings"
 #define HOST "dev.thebedlab.com"
 #define DEV_ID "2" //can be used in future developments for multiple installations
-unsigned long transmissionFrequency=30000;
-unsigned long checkFrequency=5000;
-double Setpoint = 20.0;
- 
-// Setup a oneWire instance to communicate with any OneWire devices 
+unsigned long transmissionFrequency = 30000;
+unsigned long checkFrequency = 5000;
+double Setpoint = 19.5;
+
+// Setup a oneWire instance to communicate with any OneWire devices
 // (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
 // Pass our oneWire reference to Dallas Temperature.
@@ -30,44 +30,44 @@ void setup()
 {
   pinMode(RelayPin, OUTPUT);
   pinMode(RelayPower, OUTPUT);
-  digitalWrite(RelayPin,HIGH);
-  digitalWrite(RelayPower,HIGH);
-  webConnected=false;
+  digitalWrite(RelayPin, HIGH);
+  digitalWrite(RelayPower, HIGH);
+  webConnected = false;
   mySerial.begin(9600);
   pinMode(13, OUTPUT);
-  digitalWrite(13,LOW);
+  digitalWrite(13, LOW);
   lastTransmission = millis();
   lastCheck = millis();
   Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }
-  for(int i=0;i<10;i++)
+  for (int i = 0; i < 10; i++)
   {
-    if(!webConnected){
+    if (!webConnected) {
       mySerial.println("AT");
-      //delay(1000);  
-      if(mySerial.find("OK"))
+      //delay(1000);
+      if (mySerial.find("OK"))
       {
-        webConnected=true;
+        webConnected = true;
         Serial.println("Module is addressable");
         break;
       }
     }
   }
-  if(!webConnected)
+  if (!webConnected)
   {
     // Turn LED on continuously to signify stall
     ledOn();
     Serial.println("Module not addressable. Try resetting or continue without Internet.");
   }
-  else{
+  else {
     delay(1000);
     //connect to the wifi
-    webConnected=false;
-    for(int i=0;i<10;i++)
+    webConnected = false;
+    for (int i = 0; i < 10; i++)
     {
-      if(connectWiFi())
+      if (connectWiFi())
       {
         // flash LED to let us know that device connected
         flash();
@@ -90,51 +90,51 @@ void setup()
 
 void loop()
 {
-  if(millis()-lastCheck>checkFrequency){
-    lastCheck=lastCheck+checkFrequency;
+  if (millis() - lastCheck > checkFrequency) {
+    lastCheck = lastCheck + checkFrequency;
     sensors.requestTemperatures();
     float temperature = sensors.getTempCByIndex(0);
-    if (!heatingOn && temperature<(Setpoint-0.2))
+    if (!heatingOn && temperature < (Setpoint - 0.2))
     {
-      heatingOn=true;
+      heatingOn = true;
       Serial.println("Turning Heating On.");
       digitalWrite(RelayPin, LOW);
     }
-    else if(heatingOn && temperature>Setpoint)
+    else if (heatingOn && temperature > Setpoint)
     {
-      heatingOn=false;
+      heatingOn = false;
       Serial.println("Turning Heating Off.");
       digitalWrite(RelayPin, HIGH);
     }
-    
+
     Serial.print("HeatingOn=");
     Serial.print(heatingOn);
     Serial.print("Temp=");
     Serial.println(temperature);
-  }    
-    
-    
-  if(webConnected && (millis()-lastTransmission>transmissionFrequency))
+  }
+
+
+  if (webConnected && (millis() - lastTransmission > transmissionFrequency))
   {
-    lastTransmission+=transmissionFrequency;
+    lastTransmission += transmissionFrequency;
     String cmd = "AT+CIPSTART=\"TCP\",\"";
     cmd += DST_IP;
     cmd += "\",80";
     mySerial.println(cmd);
-    if(mySerial.find("Error")) return;
+    if (mySerial.find("Error")) return;
     sensors.requestTemperatures();
     float tempf = sensors.getTempCByIndex(0);
     int temp1 = (int)tempf;
     int temp2 = (tempf - temp1) * 100;
-    String temp="";
+    String temp = "";
     temp += temp1;
     temp += ".";
-    if (temp2<10)
+    if (temp2 < 10)
       temp += "0";
     temp += temp2;
     String payload = "device=";
     payload += DEV_ID;
-    payload += "&temp="+temp;
+    payload += "&temp=" + temp;
     payload += "&heaton=";
     payload += heatingOn;
     Serial.println(payload);
@@ -149,9 +149,9 @@ void loop()
     cmd += "\r\n";
     mySerial.print("AT+CIPSEND=");
     mySerial.println(cmd.length());
-    if(mySerial.find(">"))
+    if (mySerial.find(">"))
     {
-    }else
+    } else
     {
       mySerial.println("AT+CIPCLOSE");
       delay(1000);
@@ -173,31 +173,31 @@ boolean connectWiFi()
 {
   mySerial.println("AT+CWMODE=1");
   delay(2000);
-  String cmd="AT+CWJAP=\"";
-  cmd+=SSID;
-  cmd+="\",\"";
-  cmd+=PASS;
-  cmd+="\"";
+  String cmd = "AT+CWJAP=\"";
+  cmd += SSID;
+  cmd += "\",\"";
+  cmd += PASS;
+  cmd += "\"";
   mySerial.println(cmd);
   delay(5000);
-  if(mySerial.find("OK"))
+  if (mySerial.find("OK"))
   {
     Serial.println("Connected to AP");
     return true;
-  }else
+  } else
   {
     Serial.println("Not connected to AP");
     return false;
   }
 }
 
-void ledOn(){
-  digitalWrite(13,HIGH);
+void ledOn() {
+  digitalWrite(13, HIGH);
 }
 
 void flash()
 {
-  digitalWrite(13,HIGH);
+  digitalWrite(13, HIGH);
   delay(1000);
-  digitalWrite(13,LOW);
+  digitalWrite(13, LOW);
 }
